@@ -6,10 +6,10 @@ $(document).on('click','.category',function(event){
 	var id_categorie = $(this).attr("id_cat");
 
 		$.ajax({
-			url	:	"functions.php",
-			method:	"POST",
-			data	:	{id_categorie:id_categorie},
-			success	:	function(data){
+			url:"functions.php",
+			method:"POST",
+			data:{id_categorie:id_categorie},
+			success:function(data){
 				$(".nav-dropdown").html(data);
 			}
 		})
@@ -18,7 +18,7 @@ $(document).on('click','.category',function(event){
 });
 
 
-$(document).on('change', '.marca', function(){
+$(document).on('change','.marca',function(){
 
 	 var valori_selectate = getFilterData('marca');
 	 var valoare_selectata = $(this).attr("titlu");
@@ -26,24 +26,24 @@ $(document).on('change', '.marca', function(){
 	 var id_sub = $(this).attr("id_sub");
 
 	 $.ajax({
-		url	:	"functions.php",
-		method:	"POST",
-		data	:	{valori_selectate:valori_selectate,valoare_selectata:valoare_selectata,id_cat:id_cat,id_sub:id_sub},
-		success	:	function(data){
+		url:"functions.php",
+		method:"POST",
+		data:{valori_selectate:valori_selectate,valoare_selectata:valoare_selectata,id_cat:id_cat,id_sub:id_sub},
+		success:function(data){
 			$(".card-body .row").html(data);
 		}
 	})
 // }
 });
 
-$(document).on('change', '.pret', function(){
+$(document).on('change','.pret',function(){
 
 	var valoare_sortare = $(this).val();
 			$.ajax({
-				url	:	"functions.php",
-				method:	"POST",
-				data	:	{valoare_sortare:valoare_sortare},
-				success	:	function(data){
+				url:"functions.php",
+				method:"POST",
+				data:{valoare_sortare:valoare_sortare},
+				success:function(data){
 					$(".card-body .row").html(data);
 					
 				}
@@ -61,7 +61,7 @@ function getFilterData(className) {
 }
 
 $(document).ready(function() {
-	$('#form-cart').on('submit', function(e){
+	$('#form-cart').on('submit',function(e){
 		e.preventDefault();
 
 		var id_produs = $(this).find(".add_to_cart_button").attr("id");
@@ -72,10 +72,10 @@ $(document).ready(function() {
 		var price = parseInt($(this).parent().find(".product-inner-price").text());
 
 		$.ajax({
-			url	:	"functions.php",
-			method:	"POST",
-			data	:	{addToCart:value,id_produs:id_produs,pret:price,nume:nume},
-			success	:	function(data){
+			url:"functions.php",
+			method:"POST",
+			data:{addToCart:value,id_produs:id_produs,pret:price,nume:nume},
+			success:function(data){
 				$('#product_message').html(data);
 			}
 		})
@@ -92,10 +92,10 @@ $(document).ready(function() {
 count_item();
 function count_item(){
 	$.ajax({
-		url : "functions.php",
-		method : "POST",
-		data : {count_item:1},
-		success : function(data){
+		url:"functions.php",
+		method:"POST",
+		data:{count_item:1},
+		success:function(data){
 			$(".badge").html(data);
 		}
 	})
@@ -103,10 +103,10 @@ function count_item(){
 function checkOutDetails(){
 
 	   $.ajax({
-		   url : "functions.php",
-		   method : "POST",
-		   data : {Common:1},
-		   success : function(data){
+		   url:"functions.php",
+		   method:"POST",
+		   data:{Common:1},
+		   success:function(data){
 			$("#cart_checkout").html(data);
 			net_total();
 			getValue();
@@ -122,7 +122,7 @@ function checkOutDetails(){
 		$('input[type=number]').each(function(){
 
 			var row = $(this).parent().parent();
-			var price  = row.find('.price').val();
+			var price = row.find('.price').val();
 			var total = price * $(this).val();
 			row.find('.total').val(total);
 		})
@@ -135,7 +135,7 @@ function checkOutDetails(){
 	}
 
 	function getValue(){
-		$("input[type=number]").bind('keyup input', function(){
+		$("input[type=number]").bind('keyup input',function(){
 			var value = $(this).val();
 			var row = $(this).parent().parent();
 			var id_produs = row.find('.remove').attr('remove_id');
@@ -146,10 +146,10 @@ function checkOutDetails(){
 			$('.net_total').html(cost_total);
 
 			$.ajax({
-				url : "functions.php",
-				method : "POST",
-				data : {valoare_actualizata:value,id:id_produs},
-				success : function(data){
+				url:"functions.php",
+				method:"POST",
+				data:{valoare_actualizata:value,id:id_produs},
+				success:function(data){
 					net_total();
 					
 				}
@@ -170,10 +170,10 @@ function checkOutDetails(){
 		var remove = $(this).parent().parent().parent();
 		var remove_id = remove.find(".remove").attr("remove_id");
 		$.ajax({
-			url	:	"functions.php",
-			method	:	"POST",
-			data	:	{stergeProdusCart:1,remove_id:remove_id},
-			success	:	function(data){
+			url:"functions.php",
+			method:"POST",
+			data:{stergeProdusCart:1,remove_id:remove_id},
+			success:function(data){
 				$("#cart_message").html(data);
 				checkOutDetails();
 			}
