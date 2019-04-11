@@ -39,16 +39,13 @@
                 <ul class="right">
                     <li><a href="login.php">Log In</a></li>
                     <li>
-                        <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<span class="badge">0</span></a>
+                        <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<span class="total_produse">0</span></a>
                     </li>
                 </ul>
             </nav>
         </div>
     </section>
 		
-	
-
-
     <div class="wrapper">
         <div class="row">	
             <div class="col-2">
@@ -100,10 +97,6 @@
                             echo  $titlu_categorie;
                         }
 
-                        if(isset($_SESSION['id_utilizator'])){
-                        echo  $_SESSION['id_utilizator'];
-                    }
-                    var_dump($_SESSION);
                         ?>
                     </div>
                     <div class="card-body">
@@ -168,40 +161,17 @@
 
 <script type="text/javascript">
 
+(function($) { 
+  $(function() { 
 
-
-// $(document).on('click','.subcategory',function(event){
-// 	// $("body").delegate(".category","click",function(event){
-// 		// $(".nav-dropdown").css('display','block');
-		
-// 	var id_subcategorie = $(this).attr("id_sub");
-// 	console.log(id_subcategorie);
-// 		$.ajax({
-// 			url	:	"functions.php",
-// 			method:	"POST",
-// 			data	:	{id_subcategorie:id_subcategorie},
-// 			success	:	function(data){
-// 				$(".nav").html(data);
-// 			}
-// 		})
-// 		return false;
-    
-// });
-
-// $(document).on('click','.card-block a',function(event){
-
-//     var titlu = $(this).attr("titlu");
-//     // console.log(titlu);
-    
-// });
-// $(document).on('click','.card-block a',function(event){
-//     // event.preventDefault();
-//     var href = $(this).attr("href");
-//     var titlu = href.split("titlu=")[1];
-//     var model_produs = titlu.replace(/%20/g, '-').toLowerCase();    
-// // alert(model_produs);
-// window.history.pushState(null, null, model_produs);
-// });
+    $('nav ul li a').click(function(e) {
+ 
+    $(this).siblings(".nav-dropdown").css('display','block')
+      $(this).parent().siblings("li").find(".nav-dropdown").css("display", "none");
+ 
+    });
+}); 
+})(jQuery); 
 
 </script>
 </body>
