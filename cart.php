@@ -39,7 +39,7 @@
                 <ul class="right">
                     <li><a href="login.php">Log In</a></li>
                     <li>
-                        <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<span class="badge">0</span></a>
+                        <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="total_produse">0</span></a>
                     </li>
                 </ul>
             </nav>
@@ -57,12 +57,12 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-2"><b>Action</b></div>
-                                <div class="col-md-2"><b>Product Image</b></div>
-                                <div class="col-md-2"><b>Product Name</b></div>
-                                <div class="col-md-2"><b>Quantity</b></div>
-                                <div class="col-md-2"><b>Product Price</b></div>
-                                <div class="col-md-2"><b>Price in $</b></div>
+                                <div class="col-md-2"><b>Actiune</b></div>
+                                <div class="col-md-2"><b>Imagine</b></div>
+                                <div class="col-md-2"><b>Nume</b></div>
+                                <div class="col-md-2"><b>Cantitate</b></div>
+                                <div class="col-md-2"><b>Pret</b></div>
+                                <div class="col-md-2"><b>Subtotal</b></div>
                             </div>
                             <div id="cart_checkout"></div>
                         </div>
@@ -89,23 +89,35 @@
 <script type="text/javascript">
 
 function comanda_cost_total(){
+    
     $(document).on('click','.btn-success',function(event){
-	var cost_produse = parseInt($('.cost_produse').html());
-	var cost_livrare = parseInt($('.cost_livrare').html());
-	var cost_total = cost_produse + cost_livrare;
+        var cost_produse = parseInt($('.cost_produse').html());
+        var cost_livrare = parseInt($('.cost_livrare').html());
+        var cost_total = cost_produse + cost_livrare;
 
-	$.ajax({
-		url : "checkout.php",
-		method : "POST",
-		data : {cost_total:cost_total,cost_produse:cost_produse,cost_livrare:cost_livrare},
-		success : function(data){
-		
-			
-		}
+        $.ajax({
+            url:"checkout.php",
+            method:"POST",
+            data:{cost_total:cost_total,cost_produse:cost_produse,cost_livrare:cost_livrare},
+            success : function(data){
+            }
+        });
     });
-});
 }
 comanda_cost_total();
+
+(function($) { 
+  $(function() { 
+
+    $('nav ul li a').click(function(e) {
+ 
+    $(this).siblings(".nav-dropdown").css('display','block')
+      $(this).parent().siblings("li").find(".nav-dropdown").css("display", "none");
+ 
+    });
+}); 
+})(jQuery); 
+
 
 </script>
 </html>
