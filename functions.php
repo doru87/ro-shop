@@ -5,11 +5,10 @@ function getCategories(){
  
     $result = query("SELECT * FROM categorii");
         while($categorie = fetch_array($result)){
-            echo '<li><a href="'.$categorie['titlu'].'" class="category" id_cat="'.$categorie['id'].'">'.$categorie['titlu'].'</a></li>';
+            echo '<li><a href="'.$categorie['titlu'].'" class="category" id_cat="'.$categorie['id'].'">'.$categorie['titlu'].'</a><ul class="nav-dropdown"></ul></li>';
         }
-
-        echo '<ul class="nav-dropdown"></ul>'; 
 }
+
 if(isset($_POST['id_categorie'])){
     $id = $_POST['id_categorie'];
     
@@ -79,7 +78,7 @@ function redirect($link) {
                     }
                         $sqlQuery = query($sqlQuery);
                         while($produse = fetch_array($sqlQuery)){
-                            echo '	<div class="col-md-4">
+                            echo'	<div class="col-md-4">
                                         <div class="card setheight">
                                             <img class="card-img-top" src="poze_produse/'.$titlu_categorie.'/'.$nume_subcategorie.'/'.$valoare_selectata.'/'.$produse['imagine'].'">
                                             
@@ -102,6 +101,7 @@ function redirect($link) {
     
       
 $adresa_ip = getenv("REMOTE_ADDR");
+
 if (isset($_POST['addToCart']) && !empty($_POST["addToCart"]) && isset($_POST['id_produs']) && !empty($_POST["id_produs"]) && isset($_POST['pret']) && !empty($_POST["pret"]) && isset($_POST['nume']) && !empty($_POST["nume"])){
     $id_produs = $_POST['id_produs'];
     $valoare_input = $_POST['addToCart'];
