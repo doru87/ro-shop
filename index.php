@@ -40,7 +40,7 @@
             <ul class="right">
                 <li><a href="login.php">Log In</a></li>
                 <li>
-                    <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<span class="badge">0</span></a>
+                    <a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<span class="total_produse">0</span></a>
                 </li>
             </ul>
         </nav>
@@ -101,7 +101,6 @@
                                 $pagLink .= "<a href='?page=".$i."'>".$i."</a>";
                             };
                                 echo $pagLink . "</div>"; 
-                      
                           
                        ?>
                             
@@ -113,4 +112,19 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+
+(function($) { 
+  $(function() { 
+
+    $('nav ul li a').click(function(e) {
+ 
+    $(this).siblings(".nav-dropdown").css('display','block')
+      $(this).parent().siblings("li").find(".nav-dropdown").css("display", "none");
+ 
+    });
+}); 
+})(jQuery); 
+
+</script>
 </html>
